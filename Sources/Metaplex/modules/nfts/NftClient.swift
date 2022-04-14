@@ -9,6 +9,6 @@ import Foundation
 
 class NftClient {
     func findNftByMint(mint: String, onComplete: @escaping (Result<NFT, Error>) -> Void) {
-        
+
     }
 }
