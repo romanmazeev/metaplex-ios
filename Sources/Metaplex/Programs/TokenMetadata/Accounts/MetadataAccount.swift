@@ -87,7 +87,13 @@ public struct MetadataAccount: BufferLayout {
         } else {
             self.editionNonce = nil
         }
-        self.tokenStandard = try? MetaplexTokenStandard(rawValue: UInt8.init(from: &reader))
+        let hasTokenStandard: Bool = try .init(from: &reader)
+        if hasTokenStandard {
+            self.tokenStandard = try? MetaplexTokenStandard(rawValue: UInt8.init(from: &reader))
+        } else {
+            self.tokenStandard = nil
+        }
+        
         let hasCollection: Bool = try .init(from: &reader)
         if hasCollection {
             self.collection = try? .init(from: &reader)
